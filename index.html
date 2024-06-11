@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Easy-Translation</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="description" content="Description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+    <style>
+        .app-name img {
+            width: 45%; /* 设置Logo宽度 */
+            height: auto; /* 自动设置高度以保持比例 */
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+    const global = {
+        version: 'v1.3.1',
+        projectName: 'EasyTranslation',
+    }
+    window.$docsify = {
+        name: global.projectName + " " + global.version,
+        repo: 'https://gitee.com/cai-zhiyuDaKeLe/easy-translation',
+        logo: '/assets/easy-translation-logo-mini.png',
+        relativePath: true,
+        coverpage: true,
+        onlyCover: true,
+        loadNavbar: true,
+        loadSidebar: true,
+        fallbackLanguages: ['zh-cn','en-us'],
+        subMaxLevel: 3,
+        search: {
+            maxAge: 10000, // 过期时间，单位毫秒，默认一天
+            // 支持本地化
+            placeholder: '搜索',
+            noData: '找不到结果!',
+            // 搜索标题的最大层级, 1 - 6
+            depth: 2
+        },
+        plugins: [
+            function (hook, vm) {
+                // 替换全局变量占位符
+                hook.beforeEach(function (content) {
+                    for (var key in global) {
+                        if (global.hasOwnProperty(key)) {
+                            var regex = new RegExp('{{' + key + '}}', 'g');
+                            content = content.replace(regex, global[key]);
+                        }
+                    }
+                    var regex = new RegExp('{{path}}', 'g');
+                    content = content.replace(regex,window.location.pathname)
+                    return content;
+                });
+                // 在封面页面加载时替换变量占位符
+                hook.afterEach(function (html, next) {
+                    for (var key in global) {
+                        if (global.hasOwnProperty(key)) {
+                            var regex = new RegExp('{{' + key + '}}', 'g');
+                            html = html.replace(regex, global[key]);
+                        }
+                    }
+                    next(html);
+                });
+            }
+        ]
+    }
+</script>
+<!-- Docsify v4 -->
+<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+<!-- 一键复制插件 -->
+<script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script><!--
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>-->
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+<!-- 代码高亮 -->
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-xml-doc.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-xml-doc.min.js"></script>
+</body>
+</html>
