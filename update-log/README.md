@@ -5,9 +5,28 @@
 </style>
 # 更新日志
 
+## v1.4.0@2024-07-01
+
+- pref：拆分了大量的类，将其功能细化成各种组件，增强扩展性。
+- pref：增加包扫描的流程，提高项目刚启动时的响应速度。
+- pref：默认注册0参到5参的翻译器。
+- feat：将`@Mapping`的`mapper`参数改名字为`mappers`，且类型从string数组改为`@Mapper`数组。【**重要**】
+- feat：`@Mapper`由`value`来决定映射对象的属性，使用`paramHandler`来改变该`mapper`对象，由此作为参数变换类型，批量处理的基础。【**重要**】
+- feat：`@Mapping`增加`strategy`属性，增加批量翻译的能力。【**重要**】
+- feat：`@Mapping`增加`resultHandler`属性，增加处理翻译结果的能力，由此作为分发批量翻译时分配翻译结果的基础。【**重要**】
+- feat：`@Mapping`增加`groupKey`属性，作为辅助参与结果映射。
+- feat：增加`jackson`序列化时翻译的功能。【**重要**】
+- refactor：重构Config类写法。
+- refactor：优化spring模块写法，使其更加优雅。
+- refactor：对大部分包名，类名做了破坏性更新。【**重要**】
+- test：demo模块增加大量测试用例，优化测试流程。
+- bugfix：修复单例桶不生效的问题。
+
+---
+
 ## v1.3.1@2024-06-11
 
-- bugfix：修复`@RefTranslation`对于集合类型翻译失效的问题
+- bugfix：修复`@RefTranslation`对于集合类型翻译失效的问题。
 
 ---
 

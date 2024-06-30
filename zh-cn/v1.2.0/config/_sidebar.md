@@ -1,4 +1,4 @@
-- [配置](zh-cn/config/)
+- [配置]()
 
 <style>
     li{
