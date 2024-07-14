@@ -5,6 +5,16 @@
 </style>
 # 更新日志
 
+## v1.4.2@2024-07-14
+
+- pref：将各种组件全部交由TransManager管理，方便后续扩展
+- pref：将spring-boot模块进行拆分，方便后续扩展
+- refactor：日志打印改为接口TransLog，用户可自定义通过TransManager替换Log的实现，取出框架中对slf4j的依赖
+- bugfix：修复各种启动失败的问题
+- bugfix：修复框架不生效的问题
+
+---
+
 ## v1.4.0@2024-07-01
 
 - pref：拆分了大量的类，将其功能细化成各种组件，增强扩展性。
